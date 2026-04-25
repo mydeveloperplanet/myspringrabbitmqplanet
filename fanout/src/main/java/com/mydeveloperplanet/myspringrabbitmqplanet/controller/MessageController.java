@@ -1,5 +1,6 @@
 package com.mydeveloperplanet.myspringrabbitmqplanet.controller;
 
+import com.mydeveloperplanet.myspringrabbitmqplanet.config.RabbitMqConfig;
 import com.mydeveloperplanet.myspringrabbitmqplanet.service.MessageService;
 
 import org.springframework.http.HttpStatus;
@@ -20,28 +21,10 @@ public class MessageController {
 
     @RequestMapping(
             method = RequestMethod.POST,
-            value = "send-general"
+            value = "send-to-all"
     )
     public ResponseEntity<Void> sendGeneralMessage(@RequestBody String message) {
-        messageService.sendMessage("event.general.message", message);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @RequestMapping(
-            method = RequestMethod.POST,
-            value = "send-specific"
-    )
-    public ResponseEntity<Void> sendSpecificMessage(@RequestBody String message) {
-        messageService.sendMessage("event.specific.message", message);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @RequestMapping(
-            method = RequestMethod.POST,
-            value = "send-nested-general"
-    )
-    public ResponseEntity<Void> sendNestedGeneralMessage(@RequestBody String message) {
-        messageService.sendMessage("event.general.message.nested", message);
+        messageService.sendMessage(message);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
