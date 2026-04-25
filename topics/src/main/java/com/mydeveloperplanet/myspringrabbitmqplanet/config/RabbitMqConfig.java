@@ -1,4 +1,4 @@
-package com.mydeveloperplanet.myspringrabbitmqplanet.topics.config;
+package com.mydeveloperplanet.myspringrabbitmqplanet.config;
 
 
 import org.springframework.amqp.core.Binding;

@@ -1,4 +1,4 @@
-package com.mydeveloperplanet.myspringrabbitmqplanet.topics.controller;
+package com.mydeveloperplanet.myspringrabbitmqplanet.controller;
 
 import com.mydeveloperplanet.myspringrabbitmqplanet.topics.service.MessageService;
 
