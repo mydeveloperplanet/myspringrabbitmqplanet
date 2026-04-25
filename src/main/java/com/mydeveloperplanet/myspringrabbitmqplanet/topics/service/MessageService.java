@@ -1,6 +1,6 @@
-package com.mydeveloperplanet.myspringrabbitmqplanet.service;
+package com.mydeveloperplanet.myspringrabbitmqplanet.topics.service;
 
-import com.mydeveloperplanet.myspringrabbitmqplanet.config.RabbitMqConfig;
+import com.mydeveloperplanet.myspringrabbitmqplanet.topics.config.RabbitMqConfig;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;

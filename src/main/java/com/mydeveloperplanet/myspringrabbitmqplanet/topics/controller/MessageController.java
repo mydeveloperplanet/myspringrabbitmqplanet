@@ -1,6 +1,6 @@
-package com.mydeveloperplanet.myspringrabbitmqplanet.controller;
+package com.mydeveloperplanet.myspringrabbitmqplanet.topics.controller;
 
-import com.mydeveloperplanet.myspringrabbitmqplanet.service.MessageService;
+import com.mydeveloperplanet.myspringrabbitmqplanet.topics.service.MessageService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +33,15 @@ public class MessageController {
     )
     public ResponseEntity<Void> sendSpecificMessage(@RequestBody String message) {
         messageService.sendMessage("event.specific.message", message);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "send-nested-general"
+    )
+    public ResponseEntity<Void> sendNestedGeneralMessage(@RequestBody String message) {
+        messageService.sendMessage("event.general.message.nested", message);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

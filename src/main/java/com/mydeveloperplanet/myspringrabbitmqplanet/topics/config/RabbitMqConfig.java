@@ -1,4 +1,4 @@
-package com.mydeveloperplanet.myspringrabbitmqplanet.config;
+package com.mydeveloperplanet.myspringrabbitmqplanet.topics.config;
 
 
 import org.springframework.amqp.core.Binding;
@@ -13,9 +13,11 @@ public class RabbitMqConfig {
 
     public static final String QUEUE_CONSUMER_A = "consumer-a.queue";
     public static final String QUEUE_CONSUMER_B = "consumer-b.queue";
+    public static final String QUEUE_CONSUMER_C = "consumer-c.queue";
     public static final String TOPIC_EXCHANGE_NAME = "events.exchange";
     public static final String ROUTING_KEY_GENERAL_MESSAGE = "event.general.*";
     public static final String ROUTING_KEY_SPECIFIC_MESSAGE = "event.specific.*";
+    public static final String ROUTING_KEY_NESTED_GENERAL_MESSAGE = "event.general.#";
 
     @Bean
     TopicExchange eventsExchange() {
@@ -38,6 +40,11 @@ public class RabbitMqConfig {
     }
 
     @Bean
+    public Queue queueConsumerC() {
+        return new Queue(QUEUE_CONSUMER_C, false);
+    }
+
+    @Bean
     Binding bindingConsumerBGeneral(Queue queueConsumerB, TopicExchange exchange) {
         return BindingBuilder.bind(queueConsumerB).to(exchange).with(ROUTING_KEY_GENERAL_MESSAGE);
     }
@@ -45,6 +52,11 @@ public class RabbitMqConfig {
     @Bean
     Binding bindingConsumerBSpecific(Queue queueConsumerB, TopicExchange exchange) {
         return BindingBuilder.bind(queueConsumerB).to(exchange).with(ROUTING_KEY_SPECIFIC_MESSAGE);
+    }
+
+    @Bean
+    Binding bindingConsumerCNestedGeneral(Queue queueConsumerC, TopicExchange exchange) {
+        return BindingBuilder.bind(queueConsumerC).to(exchange).with(ROUTING_KEY_NESTED_GENERAL_MESSAGE);
     }
 
 }
