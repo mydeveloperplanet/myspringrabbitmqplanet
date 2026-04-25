@@ -1,0 +1,10 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine  # Stable, lightweight, includes management UI
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"    # AMQP
+      - "15672:15672"  # Management console
+    environment:
+      RABBITMQ_DEFAULT_USER: secret
+      RABBITMQ_DEFAULT_PASS: myuser
