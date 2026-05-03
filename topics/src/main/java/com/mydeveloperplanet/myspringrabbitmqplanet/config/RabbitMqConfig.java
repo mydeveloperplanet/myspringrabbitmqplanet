@@ -40,11 +40,6 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    public Queue queueConsumerC() {
-        return new Queue(QUEUE_CONSUMER_C, false);
-    }
-
-    @Bean
     Binding bindingConsumerBGeneral(Queue queueConsumerB, TopicExchange exchange) {
         return BindingBuilder.bind(queueConsumerB).to(exchange).with(ROUTING_KEY_GENERAL_MESSAGE);
     }
@@ -52,6 +47,11 @@ public class RabbitMqConfig {
     @Bean
     Binding bindingConsumerBSpecific(Queue queueConsumerB, TopicExchange exchange) {
         return BindingBuilder.bind(queueConsumerB).to(exchange).with(ROUTING_KEY_SPECIFIC_MESSAGE);
+    }
+
+    @Bean
+    public Queue queueConsumerC() {
+        return new Queue(QUEUE_CONSUMER_C, false);
     }
 
     @Bean
